@@ -1,0 +1,11 @@
+:root {
+  --gray: rgba(113, 124, 150, 1);
+  --player-1: rgba(255, 0, 85, 1);
+  --gray-ship: rgba(209, 210, 222, 1);
+  --player-2: rgba(3, 100, 238, 1);
+  --black: rgba(53, 56, 57, 1);
+  --white: rgba(255, 255, 255, 1);
+  --dark-mode-bg: rgba(14, 37, 50, 1);
+  --aqua: rgba(97, 198, 255, 1);
+  --coffee: rgba(53, 56, 57, 1);
+}
