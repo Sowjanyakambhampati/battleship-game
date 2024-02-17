@@ -80,6 +80,7 @@ function placeShips(board) {
   }
 }
 
+
 // Function to check if ship placement is valid
 function isValidPosition(board, x, y, length, isHorizontal) {
   if (isHorizontal && y + length > 10) return false;
