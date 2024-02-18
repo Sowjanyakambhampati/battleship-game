@@ -1,7 +1,7 @@
 // set grid rows and columns and the size of each square
 var rows = 10;
 var cols = 10;
-var squareSize = 35;
+var squareSize = 45;
 
 // get the container element
 var gameBoardContainer = document.getElementById("gameboard");
@@ -15,6 +15,8 @@ for (i = 0; i < cols; i++) {
 
     // give each div element a unique id based on its row and column, like "s00"
     square.id = "s" + j + i;
+
+    square.innerHTML += square.id;
 
     // set each grid square's coordinates: multiples of the current row or column number
     var topPosition = j * squareSize;
@@ -44,7 +46,11 @@ var hitCount = 0;
 
 var gameBoard = [];
 
-const shipLengths = [5, 4, 3, 3, 2];
+const shipLengths = [5, 4, 3, 2, 1];
+
+var computerShips =[];
+
+var hitCells = [];
 
 var minimumHits =0;
 
@@ -64,6 +70,7 @@ function placeShips(board) {
   for (const length of shipLengths) {
     let isHorizontal = Math.random() < 0.5;
     let x, y;
+    var computerShip = [];
     do {
       x = Math.floor(Math.random() * 10);
       y = Math.floor(Math.random() * 10);
@@ -71,13 +78,17 @@ function placeShips(board) {
     if (isHorizontal) {
       for (let i = 0; i < length; i++) {
         board[x][y + i] = 1;
+        computerShip.push("s" + x + (y+i));
       }
     } else {
       for (let i = 0; i < length; i++) {
         board[x + i][y] = 1;
+        computerShip.push("s" + (x+i) + y);
       }
     }
+    computerShips.push(computerShip);
   }
+  console.log(computerShips);
 }
 
 
@@ -120,20 +131,109 @@ function fireTorpedo(e) {
       e.target.style.background = "red";
       // set this square's value to 2 to indicate the ship has been hit
       gameBoard[row][col] = 2;
+      hitCells.push("s" + row + col);
 
       // increment hitCount each time a ship is hit
       hitCount++;
           if (hitCount == minimumHits) {
         alert("All enemy battleships have been defeated! You win! and you took " + totalHits + " hits");
-		stopTimer();
       }
 
       // if player clicks a square that's been previously hit, let them know
     } else if (gameBoard[row][col] > 1) {
       alert("You already fired at this location!");
     }
+    nextTurn();
+
+    
   }
   e.stopPropagation();
+}
+
+const drawCells = (cells, target) => {
+  let color = "grey"
+  if (target == "enemy"){
+
+    switch(cells.length) {
+
+      case 5:
+        var element = document.getElementsByClassName("board-components-111");
+        document.getElementById("carrier-1").style.backgroundColor= "red";
+        document.getElementById("carrier-2").style.backgroundColor= "red";
+        document.getElementById("carrier-3").style.backgroundColor= "red";
+        document.getElementById("carrier-4").style.backgroundColor= "red";
+        document.getElementById("carrier-5").style.backgroundColor= "red";
+        break;
+      case 4:
+        var element = document.getElementsByClassName("board-components-110");
+        document.getElementById("battleship-1").style.backgroundColor= "red";
+        document.getElementById("battleship-2").style.backgroundColor= "red";
+        document.getElementById("battleship-3").style.backgroundColor= "red";
+        document.getElementById("battleship-4").style.backgroundColor= "red";
+        break;
+      case 3:
+        var element = document.getElementsByClassName("board-components-108");
+        document.getElementById("cruiser-1").style.backgroundColor= "red";
+        document.getElementById("cruiser-2").style.backgroundColor= "red";
+        document.getElementById("cruiser-3").style.backgroundColor= "red";
+        break;
+      case 2:
+        var element = document.getElementsByClassName("board-components-109");
+        document.getElementById("destroyer-1").style.backgroundColor= "red";
+        document.getElementById("destroyer-2").style.backgroundColor= "red";
+        break;
+      case 1:
+        document.getElementById("submarine").style.backgroundColor= "red";
+        break;
+        default:
+          break;
+
+    }
+    
+
+  }
+}
+
+
+const nextTurn = () => {
+
+  // Draw only Enemy Ships that have completely sunk
+  computerShips.forEach(ship => {
+
+      // Get cells that exist in the ship
+      const hitCellsShips = hitCells.filter(cell => ship.includes(cell))
+
+      // If the whole cells exist, it means the ship is completely sunk, we can draw it in the screen
+      if (hitCellsShips.length == ship.length){
+          drawCells(ship, "enemy")
+      }
+  })
+  drawUIShips(computerShips)
+}
+
+// Ships need to be configured
+const drawUIShips = (ships) => {
+  const UIships = document.querySelector("#ships")
+  UIships.innerHTML = ''
+  ships.forEach(ship => {
+      ship.forEach(cell => {
+          if (hitCells.includes(cell)){
+              UIships.innerHTML += `<span style="color: red">${cell}</span>`
+          }
+          else {
+              UIships.innerHTML += cell
+          }
+      })
+      UIships.innerHTML += `<br>`
+  })
+
+}
+
+
+window.onload = () => {
+
+  nextTurn();
+
 }
 
 
