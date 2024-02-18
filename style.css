@@ -60,7 +60,7 @@
   position: relative;
   width: 338px;
   height: 84px;
-  top: -1px;
+  top: 50px;
 }
 
 .desktop .ships {
@@ -271,13 +271,13 @@
   position: absolute;
   width: 84px;
   height: 32px;
-  top: 26px;
+  top: 32px;
   left: -26px;
   transform: rotate(-90deg);
   font-family: "Futura-Bold", Helvetica;
   font-weight: 700;
   color: var(--gray);
-  font-size: 10px;
+  font-size: 12px;
   text-align: center;
   letter-spacing: 1.5px;
   line-height: normal;
@@ -402,8 +402,8 @@
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  top: 422px;
-  left: 205px;
+  top: 479px;
+  left: 196px;
   transform: rotate(90deg);
 }
 
@@ -445,8 +445,8 @@
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  top: 428px;
-  left: 240px;
+  top: 488px;
+  left: 250px;
   transform: rotate(90deg);
 }
 
@@ -455,8 +455,8 @@
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  top: 408px;
-  left: 292px;
+  top: 462px;
+  left: 261px;
   transform: rotate(90deg);
 }
 
@@ -465,7 +465,7 @@
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  top: 376px;
+  top: 432px;
   left: 92px;
   transform: rotate(90deg);
 }
@@ -475,7 +475,7 @@
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  top: 396px;
+  top: 456px;
   left: 108px;
   transform: rotate(90deg);
 }
@@ -502,8 +502,8 @@
 	box-sizing: border-box;
 	background: #f6f8f9; 
 	border: 1px solid #ddd;
-	width:35px;
-	height:35px;
+	width:40px;
+	height:40px;
 }
 
 
@@ -522,4 +522,12 @@
   background-color: #45a049;
 }
 
+
+div#messageArea {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  color: rgb(83, 175, 19);
+  font-size: 20px;
+}
 
