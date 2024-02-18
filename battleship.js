@@ -1,56 +1,65 @@
 // set grid rows and columns and the size of each square
 var rows = 10;
 var cols = 10;
-var squareSize = 35;
+var squareSize = 40;
 
-// get the container element
-var gameBoardContainer = document.getElementById("gameboard");
-
-// make the grid columns and rows
-for (i = 0; i < cols; i++) {
-  for (j = 0; j < rows; j++) {
-    // create a new div HTML element for each grid square and make it the right size
-    var square = document.createElement("div");
-    gameBoardContainer.appendChild(square);
-
-    // give each div element a unique id based on its row and column, like "s00"
-    square.id = "s" + j + i;
-
-    //square.innerHTML += square.id;
-
-    // set each grid square's coordinates: multiples of the current row or column number
-    var topPosition = j * squareSize;
-    var leftPosition = i * squareSize;
-
-    // use CSS absolute positioning to place each grid square on the page
-    square.style.top = topPosition + "px";
-    square.style.left = leftPosition + "px";
-  }
-}
-
+// Capture number of hits took 
+var totalHits =0;
 var hitCount = 0;
+
 
 /* 
    0 = empty, 1 = part of a ship, 2 = a sunken part of a ship, 3 = a missed shot
 */
 
 var gameBoard = [];
-
 const shipLengths = [5, 4, 3, 2, 1];
 
-var minimumHits =0;
+// calculate total number of actual hits required to finish the game
+var minimumHits = shipLengths.reduce((a,b) => a+b,0);
 
+//computer ships location placed as per the random logic
 var computerShips = [];
-
 var hitCells = [];
 
-for(let i=0;i<shipLengths.length ;i++){
-	minimumHits +=shipLengths[i];
-}
-
+//Load game board
+loadGameBoard();
 
 // Place Ships Randomly 
 placeShips(gameBoard);
+
+
+function loadGameBoard(){
+
+  // get the container element
+var gameBoardContainer = document.getElementById("gameboard");
+
+// make the grid columns and rows
+for (i = 0; i < cols; i++) {
+    for (j = 0; j < rows; j++) {
+      // create a new div HTML element for each grid square and make it the right size
+      var square = document.createElement("div");
+      gameBoardContainer.appendChild(square);
+
+      // give each div element a unique id based on its row and column, like "s00"
+      square.id = "s" + j + i;
+
+      //square.innerHTML += square.id;
+
+      // set each grid square's coordinates: multiples of the current row or column number
+      var topPosition = j * squareSize;
+      var leftPosition = i * squareSize;
+
+      // use CSS absolute positioning to place each grid square on the page
+      square.style.top = topPosition + "px";
+      square.style.left = leftPosition + "px";
+    }
+  }
+
+// set event listener for all elements in gameboard, run fireTorpedo function when square is clicked
+gameBoardContainer.addEventListener("click", fireTorpedo, false);
+
+}
 
 function placeShips(board) {
   for (let i = 0; i < rows; i++) {
@@ -94,11 +103,8 @@ function isValidPosition(board, x, y, length, isHorizontal) {
   return true;
 }
 
-// set event listener for all elements in gameboard, run fireTorpedo function when square is clicked
-gameBoardContainer.addEventListener("click", fireTorpedo, false);
 
-var totalHits =0;
-
+//Listner event handle after firing torpedo to see if any ship is hit
 function fireTorpedo(e) {
   // if item clicked (e.target) is not the parent element on which the event listener was set (e.currentTarget)
   if (e.target !== e.currentTarget) {
@@ -109,7 +115,6 @@ function fireTorpedo(e) {
     // extract row and column # from the HTML element's id
     var row = e.target.id.substring(1, 2);
     var col = e.target.id.substring(2, 3);
-    //alert("Clicked on row " + row + ", col " + col);
 
     // if player clicks a square with no ship, change the color and change square's value
     if (gameBoard[row][col] == 0) {
@@ -136,18 +141,32 @@ function fireTorpedo(e) {
 
       // increment hitCount each time a ship is hit
       hitCount++;
-          if (hitCount == minimumHits) {
+      if (hitCount == minimumHits) {
         alert("All enemy battleships have been defeated! You win! and you took " + totalHits + " hits");
+        //displayMessage("All enemy battleships have been defeated! You win! and you took " + totalHits + " hits")
       }
 
       // if player clicks a square that's been previously hit, let them know
     } else if (gameBoard[row][col] > 1) {
       alert("You already fired at this location!");
+      //displayMessage("You already fired at this location!");
     }
 
     nextTurn();
   }
   e.stopPropagation();
+}
+
+const nextTurn = () => {
+  // Draw only Enemy Ships that have completely sunk
+  computerShips.forEach(ship => {
+    // Get cells that exist in the ship
+    const hitCellsShips = hitCells.filter(cell => ship.includes(cell))
+    // If the whole cells exist, it means the ship is completely sunk, we can draw it in the screen
+    if (hitCellsShips.length == ship.length) {
+      drawCells(ship, "enemy")
+    }
+  })
 }
 
 const drawCells = (cells, target) => {
@@ -190,19 +209,10 @@ const drawCells = (cells, target) => {
   }
 }
 
-const nextTurn = () => {
-  // Draw only Enemy Ships that have completely sunk
-  computerShips.forEach(ship => {
-    // Get cells that exist in the ship
-    const hitCellsShips = hitCells.filter(cell => ship.includes(cell))
-    // If the whole cells exist, it means the ship is completely sunk, we can draw it in the screen
-    if (hitCellsShips.length == ship.length) {
-      drawCells(ship, "enemy")
-    }
-  })
-}
+const displayMessage = (message) =>{
 
-window.onload = () => {
-  nextTurn();
+  var messageArea = document.getElementById('messageArea');
+  messageArea.innerHtml = message;
+
 }
 
