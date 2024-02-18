@@ -5,8 +5,14 @@
     <link rel="stylesheet" href="globals.css" />
     <link rel="stylesheet" href="styleguide.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="chrono-style.css" />
   </head>
   <body>
+      <div id="sphere">
+        <span id="minDec" class="number">0</span><span id="minUni" class="number">0</span><span>:</span><span id="secDec" class="number">0</span><span id="secUni" class="number">0</span>
+        <button id="btnLeft" class="btn start">Start Game</button> <button id="btnRight" class="btn reset">RESET</button>
+      </div>
+    
     <div class="desktop">
       <div class="div">
         <div class="overlap">
@@ -15,24 +21,24 @@
             <div class="overlap-group">
               <div class="shipyard">
                 <div class="overlap-2">
-                  <div class="ships">
-                  </div>
                   <div class="text-wrapper">BATTLE SHIPS</div>
                 </div>
               </div>
               <br>
               <br>
               <br>
-             
-                            
+                                       
               <div id="gameboard">
               </div>
               <div class="your-fleet">
                 <div class="player-left-border">
                   <div class="you-VS-computer-wrapper"><div class="you-VS-computer">YOU VS COMPUTER</div></div>
                 </div>
+                <div class="messageArea" id="messageArea">
+
+                </div>
               </div>
-              <span></span>
+              <div class="ships-places">
               <div class="board-components-107">
                 <div class="div-wrapper">
                   <div class="overlap-group-3">
@@ -145,11 +151,14 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>
+          </div>
+          <img class="BATTLE-SHIP-the" src="img/battle-ship-the-naval-combat-game.png" />
         </div>
-        <img class="BATTLE-SHIP-the" src="img/battle-ship-the-naval-combat-game.png" />
-      </div>
     </div>
     <script src="battleship.js"></script>
+    <script src="chronometer.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
