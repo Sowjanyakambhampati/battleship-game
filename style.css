@@ -25,8 +25,8 @@
 
 .desktop .rectangle {
   position: absolute;
-  width: 700px;
-  height: 700px;
+  width: 600px;
+  height: 600px;
   top: 0;
   left: 0;
   background-color: #eff7f9;
@@ -402,8 +402,8 @@
   flex-direction: column;
   align-items: flex-start;
   position: absolute;
-  top: 392px;
-  left: 208px;
+  top: 422px;
+  left: 205px;
   transform: rotate(90deg);
 }
 
@@ -502,8 +502,24 @@
 	box-sizing: border-box;
 	background: #f6f8f9; 
 	border: 1px solid #ddd;
-	width:45px;
-	height:45px;
+	width:35px;
+	height:35px;
+}
+
+
+#start-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#start-button:hover {
+  background-color: #45a049;
 }
 
 
