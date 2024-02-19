@@ -29,9 +29,11 @@
   height: 150px;
   margin: 0 auto;
   padding: 35px 0;
-  position: relative;
+  position: absolute;
   text-align: center;
   width: 180px;
+  top: 90px;
+  left: 480px;
 }
 
 #splits-container {
