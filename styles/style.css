@@ -7,7 +7,7 @@
 }
 
 .desktop .div {
-  background-image: url(../img/battleship-bg1.jpg);
+  background-image: url(../img/battleship-bg-2.jpeg);
   background-size: cover;
   background-position: 50% 50%;
   width: 1467px;
@@ -486,6 +486,14 @@
   height: 35px;
   top: 51px;
   left: 272px;
+}
+
+.desktop .instructions .instructions-image{
+  position: absolute;
+  width: 350px;
+  height: 380px;
+  top: 240px;
+  left: 50px;
 }
 
 #gameboard {
