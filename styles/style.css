@@ -7,7 +7,7 @@
 }
 
 .desktop .div {
-  background-image: url(./img/battleship-bg1.jpg);
+  background-image: url(../img/battleship-bg1.jpg);
   background-size: cover;
   background-position: 50% 50%;
   width: 1467px;
