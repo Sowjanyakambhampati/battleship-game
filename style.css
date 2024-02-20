@@ -25,10 +25,10 @@
 
 .desktop .rectangle {
   position: absolute;
-  width: 600px;
+  width: 700px;
   height: 600px;
   top: 0;
-  left: 0;
+  right: -20px;
   background-color: #eff7f9;
 }
 
