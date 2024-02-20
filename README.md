@@ -6,5 +6,4 @@ Battleship is a single player board game where a user guesses the locations of t
 
 The user inputs his/her guess and the appropriate result is produced on the screen with an Alert message. Five such battleships - with 5, 4, 3, 2 & 1 locations are randomly placed on the board. The game ends when all the battleships are sunk. And also this would tell us the number of hits taken to guess the ships location.
 
-
 Link to play the game - https://sowjanyakambhampati.github.io/battleship-game 
