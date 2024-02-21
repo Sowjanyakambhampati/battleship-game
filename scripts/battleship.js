@@ -61,7 +61,9 @@ class BattleShip {
     }
     this.placeShips(this.gameBoard);
     // set event listener for all elements in gameboard, run fireTorpedo function when square is clicked
-    gameBoardContainer.addEventListener("click", this.fireTorpedo.bind(this), false);
+   // gameBoardContainer.addEventListener("click", this.fireTorpedo.bind(this), false);
+   gameBoardContainer.onclick = this.fireTorpedo.bind(this);
+
 
   }
 
