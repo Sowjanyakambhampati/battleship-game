@@ -1,4 +1,5 @@
 class BattleShip {
+  
 
   constructor() {
 
@@ -148,7 +149,7 @@ class BattleShip {
         // increment hitCount each time a ship is hit
         this.hitCount++;
         if (this.hitCount == this.minimumHits) {
-          alert("All enemy battleships have been defeated! You win! and you took " + this.totalHits + " hits");
+          alert("Game Over! All enemy battleships have been defeated! You win! and you took " + this.totalHits + " hits");
           //displayMessage("All enemy battleships have been defeated! You win! and you took " + totalHits + " hits")
         }
 
