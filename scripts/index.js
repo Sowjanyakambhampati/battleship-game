@@ -1,5 +1,6 @@
 const chronometer = new Chronometer();
 
+
 var battleship;
 
 const btnLeft = document.getElementById('btnLeft');
